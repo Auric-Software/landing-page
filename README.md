@@ -26,13 +26,15 @@ Then open http://localhost:8000.
 
 The form has no backend. `site.js` posts the address to
 [FormSubmit](https://formsubmit.co), which emails it to
-founders@auricsoftware.com. The endpoint is the `SIGNUP_ENDPOINT` constant.
+founders@auricsoftware.com. The endpoint is the `SIGNUP_ENDPOINT` constant, which
+uses FormSubmit's alias for that address so the address isn't in the page source.
 
-**One-time activation:** the first submission sends an activation email to
-founders@auricsoftware.com. Click the link in it; submissions are not delivered
-until then (the form shows an error until the address is activated). After
-activation, FormSubmit also offers a random alias you can use in place of the
-address in `SIGNUP_ENDPOINT` to keep it out of the page source.
+founders@auricsoftware.com is a Google Group. It must allow posts from anyone on
+the web (which also requires the organization-wide Groups for Business setting
+allowing incoming email from outside the organization); otherwise Gmail bounces
+FormSubmit's messages as "NoSuchUser". If the recipient changes, submit to
+`https://formsubmit.co/ajax/<new address>` once, click the activation link
+FormSubmit emails, and use the alias it provides.
 
 To switch to Formspree instead, create a form there that notifies
 founders@auricsoftware.com and set `SIGNUP_ENDPOINT` to
