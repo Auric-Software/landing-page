@@ -36,12 +36,6 @@ FormSubmit's messages as "NoSuchUser". If the recipient changes, submit to
 `https://formsubmit.co/ajax/<new address>` once, click the activation link
 FormSubmit emails, and use the alias it provides.
 
-To switch to Formspree instead, create a form there that notifies
-founders@auricsoftware.com and set `SIGNUP_ENDPOINT` to
-`https://formspree.io/f/<form-id>`. Formspree returns `{ "ok": true }`, so change
-the success check in `submitSignup` accordingly and drop the `_template` and
-`_captcha` fields.
-
 ## Hosting
 
 GitHub Pages publishes the root of `main`. `CNAME` holds the custom domain and

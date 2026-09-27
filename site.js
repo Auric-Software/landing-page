@@ -1,7 +1,5 @@
 // Launch-list signups are sent by FormSubmit (https://formsubmit.co), a serverless
-// form relay, which emails each address to the founders. To switch providers
-// (e.g. Formspree), change SIGNUP_ENDPOINT and, if needed, the payload below.
-// The alias maps to founders@auricsoftware.com and keeps the address out of the source.
+// form relay, which emails each address to the founders. The alias maps to founders@auricsoftware.com and keeps the address out of the source.
 const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/5aff395fa8232b363ac005b42d2659e2';
 const FALLBACK_EMAIL = 'founders@auricsoftware.com';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
