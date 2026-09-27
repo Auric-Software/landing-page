@@ -1,0 +1,17 @@
+{
+  "name": "@auric/design",
+  "version": "0.3.0",
+  "source": "auric-design/tokens.json",
+  "files": {
+    "tokens.css": "801cb8299176ff24a0cbbe52504d97ebf3a76c363887b817faded7c2c03bd112",
+    "fonts.css": "efab4e618f3d588a0d607e6db022c0f80e4f23284b06803027c1ca6e8ec60036",
+    "prism-logo.svg": "23254506f8af8752407e5c1c042d7bf6a8b58d11a4a483e6f58614c965933a15",
+    "auric-wordmark.png": "8445c13bf2ca9daea08810bc37087654f4dacce90da676413f1667f6245dff4f",
+    "auric-wordmark-text.png": "22ad5c26f32b503a3d959157b58361c3a8afbc8f82ef7ad00accbb1be700ecc3",
+    "auric-logo.png": "f86019162118d3cf7e4c9912bff20a0678617d522d6185764815ece390122ec0",
+    "fonts/inter-latin.woff2": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "fonts/Inter-OFL.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "fonts/Outfit.ttf": "fc7287273e66929776e2ba54f144fe699080bec29f61bf649d70d871468aeade",
+    "fonts/Outfit-OFL.txt": "c676351bf8576b9aba743cd5eaa8c0e7ee0d51f805d720447b4df4ddb6a2e416"
+  }
+}
