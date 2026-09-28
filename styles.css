@@ -157,6 +157,12 @@ p { margin: 0; }
   font-size: clamp(44px, 8vw, 88px);
 }
 
+.launch-timing {
+  margin-top: var(--auric-space-3);
+  font-size: 20px;
+  color: var(--auric-color-text-muted);
+}
+
 .lede {
   margin-top: var(--auric-space-6);
   max-width: 660px;
