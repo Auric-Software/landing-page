@@ -19,8 +19,9 @@ Then open http://localhost:8000.
 - `site.js` — launch-list form, entrance reveals, demo video controls.
 - `assets/` — approved draft 13 demo video (1080p, 60 fps), its matching
   poster frame, and the social preview image. The video and poster were copied
-  from `../prism-latest/artifacts/demo/draft-13/`; their URLs use `?v=13` to
-  refresh cached copies.
+  from `../prism-latest/artifacts/demo/draft-13/`. The filenames include
+  `draft-13` to avoid stale GitHub Pages asset caches; query strings alone
+  did not refresh the video. Legacy filenames remain for cached page copies.
 - `vendor/auric-design/` — Auric Design 0.3.0, copied from the Auric website. Do
   not edit; update from the `auric-design` repo with `npm run sync`.
 
