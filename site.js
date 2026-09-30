@@ -4,6 +4,9 @@
 const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/5aff395fa8232b363ac005b42d2659e2';
 const FALLBACK_EMAIL = 'founders@auricsoftware.com';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// FormSubmit can be slow or hang; give up so the form never stays stuck.
+const SIGNUP_TIMEOUT_MS = 30000;
+const SLOW_NOTICE_MS = 6000;
 
 
 const year = document.getElementById('year');
@@ -88,9 +91,14 @@ async function submitSignup(event) {
   button.textContent = 'Joining…';
   setStatus(form, 'pending', '');
 
+  const controller = new AbortController();
+  const abortTimer = setTimeout(() => controller.abort(), SIGNUP_TIMEOUT_MS);
+  const slowTimer = setTimeout(() => setStatus(form, 'pending', 'Still working, this can take a few seconds…'), SLOW_NOTICE_MS);
+
   try {
     const response = await fetch(SIGNUP_ENDPOINT, {
       method: 'POST',
+      signal: controller.signal,
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         email,
@@ -108,8 +116,13 @@ async function submitSignup(event) {
     form.reset();
   } catch (error) {
     console.error('Signup failed:', error);
-    setStatus(form, 'error', `Something went wrong. Please try again, or email ${FALLBACK_EMAIL}.`);
+    const message = error.name === 'AbortError'
+      ? `We couldn’t confirm your signup. Please try again later, or email ${FALLBACK_EMAIL}.`
+      : `Something went wrong. Please try again, or email ${FALLBACK_EMAIL}.`;
+    setStatus(form, 'error', message);
   } finally {
+    clearTimeout(abortTimer);
+    clearTimeout(slowTimer);
     button.disabled = false;
     button.textContent = label;
   }
