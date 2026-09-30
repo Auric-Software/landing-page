@@ -28,16 +28,17 @@ Then open http://localhost:8000.
 ## Launch list
 
 The form has no backend. `site.js` posts the address to
-[FormSubmit](https://formsubmit.co), which emails it to
-founders@auricsoftware.com. The endpoint is the `SIGNUP_ENDPOINT` constant, which
-uses FormSubmit's alias for that address so the address isn't in the page source.
+[Web3Forms](https://web3forms.com), which emails it to founders@auricsoftware.com.
+The endpoint and access key are the `SIGNUP_ENDPOINT` and `WEB3FORMS_ACCESS_KEY`
+constants. The access key is public by design: it can only send email to the
+address it was created for. To change the recipient, create a new key for that
+address at web3forms.com and replace the constant. Submissions that don't
+complete within 30 seconds show an error instead of leaving the form waiting.
 
 founders@auricsoftware.com is a Google Group. It must allow posts from anyone on
 the web (which also requires the organization-wide Groups for Business setting
 allowing incoming email from outside the organization); otherwise Gmail bounces
-FormSubmit's messages as "NoSuchUser". If the recipient changes, submit to
-`https://formsubmit.co/ajax/<new address>` once, click the activation link
-FormSubmit emails, and use the alias it provides.
+the notifications as "NoSuchUser".
 
 ## Hosting
 

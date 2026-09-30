@@ -1,13 +1,13 @@
-// Launch-list signups are sent by FormSubmit (https://formsubmit.co), a serverless
-// form relay, which emails each address to the founders. The alias maps to
-// founders@auricsoftware.com and keeps the address out of the source.
-const SIGNUP_ENDPOINT = 'https://formsubmit.co/ajax/5aff395fa8232b363ac005b42d2659e2';
+// Launch-list signups are sent by Web3Forms (https://web3forms.com), a serverless
+// form relay, which emails each address to founders@auricsoftware.com. The access
+// key only permits sending to that inbox, so it is safe to publish.
+const SIGNUP_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY = 'c90b54b9-d4a7-44f7-b218-37c6108e16ed';
 const FALLBACK_EMAIL = 'founders@auricsoftware.com';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// FormSubmit can be slow or hang; give up so the form never stays stuck.
+// Give up on a stalled request so the form never stays stuck.
 const SIGNUP_TIMEOUT_MS = 30000;
 const SLOW_NOTICE_MS = 6000;
-
 
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
@@ -101,14 +101,14 @@ async function submitSignup(event) {
       signal: controller.signal,
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: 'New Prism launch list signup',
+        from_name: 'Prism launch list',
         email,
-        _subject: 'New Prism launch list signup',
-        _template: 'table',
-        _captcha: 'false',
       }),
     });
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || String(result.success) !== 'true') {
+    if (!response.ok || result.success !== true) {
       throw new Error(result.message || `Request failed (${response.status})`);
     }
     form.classList.add('is-done');
